@@ -1,3 +1,6 @@
+## This function removes the non-bacterial sequences from the pre-processed 16S RNA gene data.
+
+#' @param x Phyloseq object including otu_table and tax_table is needed. otu_table can constitute of either OTUs or ASVs. 
 remove.nonbac = function(x){
   if (any(is.na(tax_table(x)))){
     tax_table(x)[is.na(tax_table(x))]<-"unidentified"
