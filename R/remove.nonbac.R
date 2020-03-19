@@ -1,7 +1,16 @@
-## This function removes the non-bacterial sequences from the pre-processed 16S RNA gene data.
+## TODO:
 
-#' @param x Phyloseq object including otu_table and tax_table is needed. otu_table can constitute of either OTUs or ASVs. 
-remove.nonbac = function(x){
+#' Removal of non-bacterial sequences from a phyloseq object
+#'
+#' Given an input phyloseq object with valid tax_table, returns taxonomy-filtered phyloseq object with mitochondrial, chloroplast and non-bacterial taxa removed.
+#' Non-bacterial sequences (e.g. mitochondria, chloroplast) need to be removed from OTU/ASV tables prior to statistical analyses. rm_nonbac removes all rows of otu_table and tax_table in a phyloseq object based on taxonomic labelling 'Mitochondria', 'Chloroplast' or where Kingdom is other than 'Bacteria'. NAs in taxonomy table are converted to 'unidentified'.  
+#' @param x Phyloseq object with non-empty otu_table and tax_table slots; otu_table may contain either OTUs or ASVs. 
+#' @keywords read processing dada2
+#' @export
+#' @examples
+#' rm_nonbac()
+
+rm_nonbac = function(x){
   if (any(is.na(tax_table(x)))){
     tax_table(x)[is.na(tax_table(x))]<-"unidentified"
   } else {

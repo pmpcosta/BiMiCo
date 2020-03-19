@@ -47,7 +47,15 @@ exmpl_phenodata <- read.csv("D:/WORK_2020/BIOMAP/BiMiCo_01/BiMiCo/data/exmpl_phe
 
 myphy <- create_phylo(asvtab, taxtab, exmpl_phenodata)
 
-# 6. decontamination (Optional if neg. controls are available)
+# 6. filter non-bacterial sequences
+
+myphy <- rm_nonbac(myphy)
+
+
+
+
+
+# n+1. decontamination (Optional if neg. controls are available)
 
 
 ##### B - STATISTICAL ANALYSES #####

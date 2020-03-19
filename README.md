@@ -38,6 +38,9 @@ Analysis pipeline based around DADA2 and Phyloseq R packages for the processing 
 
 5. Store results in a Phyloseq object for further visualization and analysis, "create_phylo". Specify ASV table (step 3), taxonomy table (step 4) and sample phenotype data - object will be created without phenodata, but comparative statistics cannot be done. *Optionally add phylogenetic tree
 
-6. Filter contamination using the "decontam" package (optional)
+6. Filter the above Phyloseq object using the rm_nonbac function in order to remove mitochondrial, chloroplast and other possible non-bacterial sequences based on the assigned taxonomy.  
 
-7. Various analyses can use Phyloseq functions directly or from Shiny-phyloseq, e.g. PCoA, alpha - beta diversity plots, species abundance barplots. In some cases ASV counts wil need to be transformed to relative abundance. Later even phyloseq-Deseq2 based differential relative abundance can be added  
+
+n+1. Filter contamination using the "decontam" package (optional)
+
+n+2. Various analyses can use Phyloseq functions directly or from Shiny-phyloseq, e.g. PCoA, alpha - beta diversity plots, species abundance barplots. In some cases ASV counts wil need to be transformed to relative abundance. Later even phyloseq-Deseq2 based differential relative abundance can be added  
