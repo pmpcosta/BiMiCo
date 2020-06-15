@@ -4,7 +4,7 @@
 \alias{asgntax}
 \title{Taxonomy assignment based on external reference database in BiMiCo pipeline}
 \usage{
-asgntax(asvtab, taxdat)
+asgntax(asvtab, taxdat, revcomp)
 }
 \arguments{
 \item{asvtab}{(Required) ASV table object (of class matrix) created by the 'std_(454/Illum)_ASVtab' function (ASVs in rows, samples in columns)}

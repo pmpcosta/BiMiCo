@@ -11,11 +11,12 @@
 #' asgntax()
 
 
-asgntax <- function(asvtab, taxdat){
+asgntax <- function(asvtab, taxdat, revcomp){
 
   asstax <- dada2::assignTaxonomy(t(asvtab),
                              taxdat,
-                             multithread=FALSE)
+                             multithread=FALSE,
+                             tryRC = revcomp)
 
  return(asstax)
 

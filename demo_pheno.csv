@@ -1,0 +1,16 @@
+,Type,PlateNum,randomVar
+plate2_MOCK_1.1.sff.fastq,MOCK,plate2,USA
+plate2_MOCK_1.2.sff.fastq,MOCK,plate2,USA
+plate2_MOCK_1.3.sff.fastq,MOCK,plate2,EU
+plate2_MOCK_1.4.sff.fastq,MOCK,plate2,EU
+plate2_MOCK_3.3.sff.fastq,MOCK,plate2,RUS
+plate3_MOCK.1.6.sff.fastq,MOCK,plate3,RUS
+plate3_MOCK.1.7.sff.fastq,MOCK,plate3,USA
+plate3_MOCK.1.8.sff.fastq,MOCK,plate3,USA
+plate3_MOCK.1.9.sff.fastq,MOCK,plate3,EU
+plate3_MOCK.4.3.sff.fastq,MOCK,plate3,EU
+plate3_MOCK.4.6.sff.fastq,MOCK,plate3,RUS
+plate6_WATER.1.030.01.sff.fastq,WATER,plate6,RUS
+plate6_WATER.1.047.02.sff.fastq,WATER,plate6,CHN
+plate6_WATER.1.049.01.sff.fastq,WATER,plate6,CHN
+plate6_WATER.3.045.02.sff.fastq,WATER,plate6,CHN
