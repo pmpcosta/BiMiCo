@@ -4,10 +4,12 @@
 \alias{std_454_ASVtab}
 \title{Create ASV table from filtered 454 reads}
 \usage{
-std_454_ASVtab(readfiles)
+std_454_ASVtab(readfiles, mtthread)
 }
 \arguments{
 \item{readfiles}{(Required) Path to 454 quality-filtered fastq files}
+
+\item{mtthread}{(Required) Boolean, enables multithreading (not recommended in Rstudio)}
 }
 \description{
 Given a set of 454 sequencing reads pre-filtered by the 'std_454_preprocess' function, internally generates read error models and outputs chimera-filtered ASV table. ASV table contains ASVs in rows and samples in columns.

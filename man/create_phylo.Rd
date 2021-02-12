@@ -2,12 +2,12 @@
 % Please edit documentation in R/create_phylo.R
 \name{create_phylo}
 \alias{create_phylo}
-\title{Summarize ASV table and taxonomy in Phyloseq object, with optional phenotype data}
+\title{Summarize ASV table, taxonomy and phenodata in a Phyloseq object, with ASVs renamed to more convenient shorter form, and actual ASV sequences stored as a DNAStringSet (refseq slot)}
 \usage{
 create_phylo(asvtb, taxtb, phenodata)
 }
 \arguments{
-\item{phenodata}{(Optional) sample phenotype matrix, if available; sample names must match with ASV table sample names.}
+\item{phenodata}{(Required) sample phenotype matrix, if available; sample names must match with ASV table sample names.}
 
 \item{asvtab}{(Required) ASV table generated in BimiCo (ASVs in rows)}
 

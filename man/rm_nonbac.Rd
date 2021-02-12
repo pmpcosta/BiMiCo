@@ -16,6 +16,6 @@ Non-bacterial sequences (e.g. mitochondria, chloroplast) need to be removed from
 \examples{
 rm_nonbac()
 }
-\keyword{dada2}
+\keyword{data}
+\keyword{phyloseq}
 \keyword{processing}
-\keyword{read}

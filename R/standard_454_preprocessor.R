@@ -8,12 +8,13 @@
 #' @param readfiles (Required) Path to single-end 454 demultiplexed fastq files
 #' @param outdir (Required) String specifying output directory for processed files; will be created as subdirectory of input dir.
 #' @param trim_read_length (Optional) max. length at which to truncate reads. Default = 0 (no truncating)
+#' @param mtthread (Required) Boolean, enables multithreading (not recommended in Rstudio)
 #' @keywords read processing dada2
 #' @export
 #' @examples
 #' std_454_preprocess()
 
-std_454_preprocess <- function(readfiles, outdir, trim_read_length=0){
+std_454_preprocess <- function(readfiles, outdir, mtthread, trim_read_length=0){
 
   # store fastq file names
   fqs <- sort(
@@ -50,7 +51,7 @@ std_454_preprocess <- function(readfiles, outdir, trim_read_length=0){
                         truncLen = trim_read_length,
                         rm.phix=TRUE,
                         compress=TRUE,
-                        multithread=FALSE
+                        multithread=mtthread
     )
 # Output filter summary
 

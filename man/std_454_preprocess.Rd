@@ -4,12 +4,14 @@
 \alias{std_454_preprocess}
 \title{standard preprocessor for 454 reads in BiMiCo pipeline}
 \usage{
-std_454_preprocess(readfiles, outdir, trim_read_length = 0)
+std_454_preprocess(readfiles, outdir, mtthread, trim_read_length = 0)
 }
 \arguments{
 \item{readfiles}{(Required) Path to single-end 454 demultiplexed fastq files}
 
 \item{outdir}{(Required) String specifying output directory for processed files; will be created as subdirectory of input dir.}
+
+\item{mtthread}{(Required) Boolean, enables multithreading (not recommended in Rstudio)}
 
 \item{trim_read_length}{(Optional) max. length at which to truncate reads. Default = 0 (no truncating)}
 }

@@ -1,50 +1,81 @@
-# BiMiCo
-
-## Example for Microbiome Core methods
-
-16S microbiome analysis toolbox
-
-## Introduction
-
-Analysis pipeline based around DADA2 and Phyloseq R packages for the processing of 16S rRNA sequencing metagenomics datasets  from raw read files to exploratory and comparative statistics. 
-
-## Installation:
-
-1. Install dependencies:
-
-BiocManager::install("dada2")
-BiocManager::install("phyloseq")
-
-## Input files:
-
-* directory of raw sequencing reads in fastq format
-* sample/patient phenotype data (csv table: samples in rows, variables in columns)
-* taxonomic database for 16S rRNA-based taxonomic assignment, currently preferred: Greengenes (https://zenodo.org/record/158955/files/gg_13_8_train_set_97.fa.gz?download=1)
-
-## Brief outline of the workflow:
-
-1. Specify your path to fastq files to either
-  + std_454_preprocess
-  + std_illum_SE_preprocess
-  + std_illum_PE_preprocess
-    functions, according to sequencing platform (SE = single-end, PE = paired-end) *Currently extension must be "*.f*q"
-    A subdirectory will be created in the input files directory, named using arg. 2 of "std_preprocess" functions, storing quality-filtered fastqs.
-  
-2. insp_reads: inspect read quality with "insp_reads", takes as argument the path to raw fastq, path to filtered fastq, and index of file to inspect (e.g. "2" for 2nd fastq file). Generates two separate plots of before-after quality scores
-
-3. Create ASV table from filtered fastq reads. Platform-dependent, so choose either
-  + std_454_ASVtab
-  + std_illum_SE_ASVtab
-  + std_illum_PE_ASVtab
-  function. Input is path to filtered fastqs, output is a chimera and duplicate-filtered ASV table with ASVs in ROWS / samples in COLS.
-  
-4. Identify taxonomy of ASVs in "asgn_tax" using the supplied dada2-compatible taxonomic database, e.g. RDP, SILVA or Greengenes (currently latter is preferred, since PicRust functional inference can be later used with Greengenes taxonomy). Input ASV table from step 3 and Greengenes database path (dl link in Input files above)
-
-5. Store results in a Phyloseq object for further visualization and analysis, "create_phylo". Specify ASV table (step 3), taxonomy table (step 4) and sample phenotype data - object will be created without phenodata, comparative statistics cannot be done. *Optionally add phylogenetic tree
-
-6. Filter the above Phyloseq object using the rm_nonbac function in order to remove mitochondrial, chloroplast and other possible non-bacterial sequences based on the assigned taxonomy.  
+---
+title: "Short tutorial for BiMiCo package basic functions"
+---
 
 
-n+1. Filter contamination using the "decontam" package (optional)
 
-n+2. Various analyses can use Phyloseq functions directly or from Shiny-phyloseq, e.g. PCoA, alpha - beta diversity plots, species abundance barplots. In some cases ASV counts wil need to be transformed to relative abundance. Later even phyloseq-Deseq2 based differential relative abundance can be added  
+The BiMiCo (Biomap Microbiome Core-tools) package offers single-step preprocessing of 16S microbial marker gene sequencing raw data files for 454 and Illumina platforms. \
+The current tutorial and example data is aimed at the simple preprocessing of 454-generated fastq data. For more options and details, please see the "BiMiCo_tutorial_LONG" document.
+
+# Install dependencies
+
+- Install CRAN dependencies
+
+`install.packages("BiocManager")` \
+`install.packages("ggplot2")`
+
+- Install Bioconductor dependencies
+
+`BiocManager::install("Biobase")` \
+`BiocManager::install("Biostrings")` \
+`BiocManager::install("phyloseq")` \
+`BiocManager::install("dada2")`
+
+- Optional packages (required for "Long" tutorial/workflow)
+
+`install.packages("fastqcr")` \
+`install.packages("phangorn")` \
+`BiocManager::install("decontam")`
+
+# Load required packages
+
+`library(BiMiCo)` \
+`library(fastqcr)` \
+`library(ggplot2)` \
+
+
+# Specify INPUTS:
+
+- fastq files (directory containing raw fastq files intended for analysis exclusively, no other files):
+
+`rawfqs <- "./Demo_data_MAARS/raw_fqs"`
+
+- sample phenodata (sample names in rows, sample variables in columns):
+
+`phedat <- read.csv("./Demo_data_MAARS/phenodata_maars_demo.csv", row.names=1)`
+
+- if not already contained in sample phenodata, please specify **PRIMER TYPE** (amplified region):
+
+`phedat$primer_type <- "V3-V4"`
+
+- taxonomy database to use with DADA2 (default is Greengenes v.13.5):
+
+`txset <- "./Demo_data_MAARS/gg_13_8_train_set_97.fa.gz"`
+
+# Specify OUTPUT folders:
+
+- directory to write quality-filtered fastq files to:
+
+`filtered_fqs <- "./Demo_data_MAARS/filt_fqs"`
+
+- directory to write various outputs(ASV table, figures & graphs) to:
+
+`out_main <- "./Demo_data_MAARS/results/"`
+
+
+# Run single-command preprocessing for 454 reads. 
+- *Tip #1: trimming the length of 454 sequencing reads is highly recommended due to the drop-off in quality; please set trim_read_length accordingly, see "Long" tutorial for more details on QC/trimming* \
+- *Tip #2: Multithreading is enabled with the "mtthread=T" argument- not recommended when running from Rstudio.*
+
+`toy_set <- bimico_454(rawfqs, txset, phedat, filtered_fqs, trim_read_length = 500, mtthread = F)`
+
+
+# Generate a summary report based on the desired variable column of phenodata (case/control, sample source, sequencing batch...)
+
+- UNDER DEVELOPMENT: specify phyloseq object, variable of interest, output file basename- PDF of ordination and top 4 ASVs, extended in the future
+
+`bimico_summary(toy_set, "clinical_group", "ex1")`
+
+
+
+
