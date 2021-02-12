@@ -1,5 +1,5 @@
 ---
-title: "Short tutorial for BiMiCo package basic functions"
+# Short tutorial for BiMiCo package basic functions
 ---
 
 
