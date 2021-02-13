@@ -1,5 +1,5 @@
 ---
-title: "Short tutorial for BiMiCo package basic functions"
+# "Short tutorial for BiMiCo package basic functions"
 ---
 
 
@@ -38,11 +38,11 @@ The current tutorial and example data is aimed at the simple preprocessing of 45
 
 - fastq files (directory containing raw fastq files intended for analysis exclusively, no other files):
 
-`rawfqs <- "./Demo_data_MAARS/raw_fqs"`
+`rawfqs <- "./Demo_data_bimico/raw_fqs"`
 
 - sample phenodata (sample names in rows, sample variables in columns):
 
-`phedat <- read.csv("./Demo_data_MAARS/phenodata_maars_demo.csv", row.names=1)`
+`phedat <- read.csv("./Demo_data_bimico/phenodata_demo.csv", row.names=1)`
 
 - if not already contained in sample phenodata, please specify **PRIMER TYPE** (amplified region):
 
@@ -50,17 +50,17 @@ The current tutorial and example data is aimed at the simple preprocessing of 45
 
 - taxonomy database to use with DADA2 (default is Greengenes v.13.5):
 
-`txset <- "./Demo_data_MAARS/gg_13_8_train_set_97.fa.gz"`
+`txset <- "./Demo_data_bimico/gg_13_8_train_set_97.fa.gz"`
 
 # Specify OUTPUT folders:
 
 - directory to write quality-filtered fastq files to:
 
-`filtered_fqs <- "./Demo_data_MAARS/filt_fqs"`
+`filtered_fqs <- "./Demo_data_bimico/filt_fqs"`
 
 - directory to write various outputs(ASV table, figures & graphs) to:
 
-`out_main <- "./Demo_data_MAARS/results/"`
+`out_main <- "./Demo_data_bimico/results/"`
 
 
 # Run single-command preprocessing for 454 reads. 

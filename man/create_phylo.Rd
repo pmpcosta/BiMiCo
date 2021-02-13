@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_phylo.R
 \name{create_phylo}
 \alias{create_phylo}
-\title{Summarize ASV table, taxonomy and phenodata in a Phyloseq object, with ASVs renamed to more convenient shorter form, and actual ASV sequences stored as a DNAStringSet (refseq slot)}
+\title{Summarize ASV table, taxonomy and phenodata in a phyloseq object}
 \usage{
 create_phylo(asvtb, taxtb, phenodata)
 }
@@ -14,7 +14,7 @@ create_phylo(asvtb, taxtb, phenodata)
 \item{taxtab}{(Required) Taxonomy table generated in BiMiCo}
 }
 \description{
-Takes as input an ASV table and taxonomy table created in the BiMiCo pipeline, with optional sample phenotypes imported e.g. from a csv table, and creates a Phyloseq object.
+Takes as input an ASV table and taxonomy table created in the BiMiCo pipeline, with optional sample phenotypes imported e.g. from a csv table, and creates a phyloseq object.
 }
 \examples{
 create_phylo()

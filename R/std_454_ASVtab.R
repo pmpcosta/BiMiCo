@@ -1,19 +1,19 @@
 ## TODO: define optional args
 #       reads file name not strictly "fastq"!
-#       make chimera removal optional, set optional args
+#       make chimera removal optional
 
 #' Create ASV table from filtered 454 reads
 #'
-#' Given a set of 454 sequencing reads pre-filtered by the 'std_454_preprocess' function, internally generates read error models and outputs chimera-filtered ASV table. ASV table contains ASVs in rows and samples in columns.
+#' Given a set of 454 sequencing reads pre-filtered by the 'prep_454' function, internally generates read error models and outputs chimera-filtered ASV table. ASV table contains ASVs in rows and samples in columns.
 #' @param readfiles (Required) Path to 454 quality-filtered fastq files
-#' @param mtthread (Required) Boolean, enables multithreading (not recommended in Rstudio)
+#' @param mtthread (Optional) Boolean, enables multithreading (not recommended in Rstudio) (default=F)
 #' @keywords read processing dada2
 #' @export
 #' @examples
-#' std_454_ASVtab()
+#' asvtab_454()
 
 
-std_454_ASVtab <- function(readfiles, mtthread){
+asvtab_454 <- function(readfiles, mtthread){
 
 
   # store filtered fastq file names
@@ -39,7 +39,7 @@ std_454_ASVtab <- function(readfiles, mtthread){
 # sequence classification step
 
 err_fqs <- dada2::learnErrors(ffqs,
-                              multithread=mtthread)
+                              multithread=mtthread, nreads=100000, MAX_CONSIST = 8)
 
 #plotErrors(err_fqs, nominalQ=TRUE)
 
@@ -57,7 +57,7 @@ dada_fqs <- dada2::dada(derp_fqs,
                         multithread=mtthread,
                         HOMOPOLYMER_GAP_PENALTY=-1,
                         BAND_SIZE=32,
-                        selfConsist = FALSE)
+                        selfConsist=FALSE)
 
 # Create ASV table
 
