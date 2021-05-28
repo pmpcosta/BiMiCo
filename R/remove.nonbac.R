@@ -9,9 +9,9 @@
 #' @examples
 #' rm_nonbac()
 
-rm_nonbac = function(x){
+rm_nonbac = function(x, silent = FALSE){
   if (any(is.na(tax_table(x)))){
-    tax_table(x)[is.na(tax_table(x))]<-"unidentified"
+    tax_table(x)[is.na(tax_table(x))]<-"unassigned"
   } else {
     tax_table(x) <- x
   }
@@ -34,5 +34,12 @@ rm_nonbac = function(x){
   allTaxa = taxa_names(x)
   myTaxa <- allTaxa[!(allTaxa %in% removetaxa)]
   new_phy = prune_taxa(myTaxa, x)
+  if (!silent) {
+    if (length(removetaxa) == 0) {
+      warning("No taxa removed.")
+    }else {
+      warning(paste("Removed", length(removetaxa), "taxa.")
+    }
+  }            
   return(new_phy)
 }
