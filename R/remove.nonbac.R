@@ -38,7 +38,7 @@ rm_nonbac = function(x, silent = FALSE){
     if (length(removetaxa) == 0) {
       warning("No taxa removed.")
     }else {
-      warning(paste("Removed", length(removetaxa), "taxa.")
+      warning(paste("Removed", length(removetaxa), "taxa."))
     }
   }            
   return(new_phy)
