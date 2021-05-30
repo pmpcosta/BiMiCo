@@ -21,7 +21,7 @@ bimico_summary <- function(phylo, contrast, outfile){
   p3 <- as.data.frame(p1@otu_table)
   p4 <- as.matrix(p1@sam_data)
   
-  pdfpath=paste0("./", outfile, ".pdf")
+  pdfpath=paste0(outfile, ".pdf")
   
   pdf(file = pdfpath)
   
