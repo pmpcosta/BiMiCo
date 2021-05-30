@@ -21,16 +21,9 @@ The current tutorial and example data is aimed at the simple preprocessing of 45
 `BiocManager::install("phyloseq")` \
 `BiocManager::install("dada2")`
 
-- Optional packages (required for "Long" tutorial/workflow)
-
-`install.packages("fastqcr")` \
-`install.packages("phangorn")` \
-`BiocManager::install("decontam")`
-
 # Load required packages
 
 `library(BiMiCo)` \
-`library(fastqcr)` \
 `library(ggplot2)` \
 
 
@@ -61,13 +54,6 @@ The current tutorial and example data is aimed at the simple preprocessing of 45
 - directory to write various outputs(ASV table, figures & graphs) to:
 
 `out_main <- "./Demo_data/results/"`
-
-
-# Run single-command preprocessing for 454 reads. 
-- *Tip #1: trimming the length of 454 sequencing reads is highly recommended due to the drop-off in quality; please set trim_read_length accordingly, see "Long" tutorial for more details on QC/trimming* \
-- *Tip #2: Multithreading is enabled with the "mtthread=T" argument- not recommended when running from Rstudio.*
-
-`toy_set <- bimico_454(rawfqs, txset, phedat, filtered_fqs, trim_read_length = 500, mtthread = F)`
 
 
 # Generate a summary report based on the desired variable column of phenodata (case/control, sample source, sequencing batch...)
